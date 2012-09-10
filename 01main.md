@@ -106,7 +106,6 @@ My name is Pancakes.
     * The index part of a DBMS, housed in a DHT
         * All the nice properties of the DHT
         * All the annoying properties of the DHT
-    * Working on hooking up as secondary index
     * Supports several types of trees
         * BPlusTree
         * KDtree (most used)
