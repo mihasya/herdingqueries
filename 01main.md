@@ -115,6 +115,10 @@ My name is Pancakes.
 
 <!SLIDE bullets>
 
-# Tags and Location, Sitting in a Tree
+# <span class="tag">Tags</span> and <span class="location">Location</span> Sitting in a Tree
 
-
+*   
+    * Presupposes boolean algebra
+        * <span class="location">in SF</span> ^ <span class="tag">likes Dave Chappelle</span>
+        * <span class="location">in SF</span> ^ <span class="tag">¬owns a car</span>
+        * (<span class="location">in SF</span> ∨ <span class="location">in Oakland</span>) ^ <span class="tag">likes the Giants</span>
