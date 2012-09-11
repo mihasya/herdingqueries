@@ -64,6 +64,8 @@ My name is Pancakes.
 
 ### where the money is stashed?"
 
+<small>credit: <a href="http://rt.com/art-and-culture/news/bender-ostap-tears-moscow/">russia today</a>
+
 <!SLIDE bullets>
 
 # Tag Data
@@ -122,3 +124,32 @@ My name is Pancakes.
         * <span class="location">in SF</span> ^ <span class="tag">likes Dave Chappelle</span>
         * <span class="location">in SF</span> ^ <span class="tag">¬owns a car</span>
         * (<span class="location">in SF</span> ∨ <span class="location">in Oakland</span>) ^ <span class="tag">likes the Giants</span>
+
+<!SLIDE>
+
+## "An RDBMS will do all that!"
+
+<!SLIDE>
+
+<img src="overloaded.jpg" height="500" class="shadow" />
+
+<small>photo by <a href="http://www.flickr.com/photos/belsymington/4102783610/">belsymington</a></small>
+
+<!SLIDE>
+.notes not all RDBMSs will even do that, and the ones that do get really unwieldy at our data size
+
+<img src="overloaded_annotated.jpg" height="500" class="shadow" />
+
+<small>photo by <a href="http://www.flickr.com/photos/belsymington/4102783610/">belsymington</a></small>
+
+<!SLIDE>
+
+## ( slides about tag solutions vs geo solutions )
+
+<!SLIDE>
+
+## What If We Could Bridge The Gap?
+
+<img src="wecandoit.jpg" height="500" class="shadow" />
+
+<small>credit: <a href="http://en.wikipedia.org/wiki/We_Can_Do_It!">wikipedia</a></small>
