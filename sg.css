@@ -46,6 +46,11 @@ h1 {
 
 small {
     font-size: 50%;
+    color: #aaaaaa;
+}
+
+small a {
+    color: #aaaaaa;
 }
 
 big {
