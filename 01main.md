@@ -144,12 +144,63 @@ My name is Pancakes.
 
 <!SLIDE>
 
-## ( slides about tag solutions vs geo solutions )
+# <span class="tag">Tag</span> solutions 
+
+## don't incorporate spatial queries well
+
+# <span class="location">Spatial</span> solution
+
+## doesn't scale to arbitrary tag cardinality
 
 <!SLIDE>
 
-## What If We Could Bridge The Gap?
+graphic representing the gap?
 
+<!SLIDE>
+
+# How Do We Bridge The Gap?
+
+<!SLIDE>
 <img src="wecandoit.jpg" height="500" class="shadow" />
 
 <small>credit: <a href="http://en.wikipedia.org/wiki/We_Can_Do_It!">wikipedia</a></small>
+
+<!SLIDE bullets>
+
+# Let's Take Stock
+
+*    
+    * SOA - small services, good at one or two things
+        * Databases suited for each use case
+    * Shared RPC library
+    * 100MM installs, trending towards 1B
+        * &lt;10MM per customer with a few exceptions
+
+<!SLIDE>
+
+# Take 1
+
+Customer -> API -> Fetch Data -> Munge -> Devices
+
+<!SLIDE bullets>
+
+# Scan ALL The Things
+
+* 
+    * Effectively Map-Reduce
+    * An obviously non-optimal solution
+    * Difficult to parallelize
+    * Crippling at low cardinality
+
+<!SLIDE>
+
+# Take 2
+
+Customer -> API -> Fetch Data & Munge<sub>1</sub> -> .. -> Fetch Data & Munge<sub>N</sub> -> Devices
+
+<!SLIDE>
+
+<img src="dog-tail.jpg" height="500" class="shadow" />
+
+<small>photo by <a href="http://www.flickr.com/photos/ick9s/3572358617/in/photostream/">ick9s</a></small>
+
