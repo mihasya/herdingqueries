@@ -68,6 +68,18 @@ My name is Pancakes.
 
 <!SLIDE bullets>
 
+# Yes, and also..
+
+*    
+    * Platform-specific data and operations
+        * badge updates
+        * "quiet time"
+            * can't enforce at device level on all platforms
+        * delivery service device ID resolution
+            * key-value lookup at delivery time
+
+<!SLIDE bullets>
+
 # Tag Data
 *  
     * Set via the API through the device SDK or directly by the developer
@@ -154,6 +166,10 @@ My name is Pancakes.
 
 <!SLIDE>
 
+# Don't forget the Platform-specific data!
+
+<!SLIDE>
+
 graphic representing the gap?
 
 <!SLIDE>
@@ -204,3 +220,10 @@ Customer -> API -> Fetch Data & Munge<sub>1</sub> -> .. -> Fetch Data & Munge<su
 
 <small>photo by <a href="http://www.flickr.com/photos/ick9s/3572358617/in/photostream/">ick9s</a></small>
 
+<!SLIDE bullets>
+
+# Send ALL The Things
+
+*   
+    * Each step implements a 2-way "push" protocol
+        * Homogeneous - lists go in, lists come out
