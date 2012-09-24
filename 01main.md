@@ -227,3 +227,89 @@ Customer -> API -> Fetch Data & Munge<sub>1</sub> -> .. -> Fetch Data & Munge<su
 *   
     * Each step implements a 2-way "push" protocol
         * Homogeneous - lists go in, lists come out
+        * Tag, location, platform pieces all act the same
+    * Textbook "Data to Algorithm" solution
+        * (do not want)
+
+<!SLIDE>
+
+# What Would a Database Do?
+
+.notes what would it looks like if we COULD fit it into one RDBMS?
+
+<!SLIDE bullets>
+
+# Vague Data Model
+
+* 
+    * Tables storing device location and history
+        * Device ID = Primary Key
+        * probably clustered on Device ID
+    * Tables for storing tag data
+        * probably just one table and lots of self joins
+        * Device ID = Primary Key
+
+<!SLIDE bullets>
+
+# Aside: Index Clustering
+
+## A Optimization
+
+Most RDBMSs offer this in some form.
+
+MySQL/InnoDB does it automatically for primary keys.
+
+**Data is stored on disk in index-order**
+
+**Queries ordered on this index scan sequentially**
+
+This is important.
+
+<!SLIDE bullets>
+
+# The Life of a Query
+
+* 
+    * Parse
+    * Plan
+    * Perform
+    * Respond
+
+<!SLIDE bullets>
+
+# The Life of a Query
+
+* 
+    * Parse - turn query into an logical tree
+    * **Plan** - figure out cheapest logical equivanelt 
+    * **Perform** - fetch, sort, merge, etc.
+    * Respond - send result back to client
+
+
+<!SLIDE bullets>
+
+# Example
+
+<img src="operatortree.png" height="450" class="shadow" />
+
+<small>source: [ 1 ]</small>
+
+<!SLIDE bullets>
+
+# Example
+
+<img src="operatortree-annotated.png" height="450" class="shadow" />
+
+<small>source: [ 1 ]</small>
+
+<!SLIDE>
+
+## **The Logic Only Cares About Tuples**
+
+<!SLIDE>
+
+# How Do I JOIN?
+
+<img src="sortmergejoin.png" height="450" class="shadow" />
+
+<small>source: [ 2 ]</small>
