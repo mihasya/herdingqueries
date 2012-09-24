@@ -312,4 +312,26 @@ This is important.
 
 <img src="sortmergejoin.png" height="450" class="shadow" />
 
-<small>source: [ 2 ]</small>
+Basic Sort Merge Join Algo from [ 2 ]
+
+<!SLIDE bullets>
+
+# How Do I JOIN?
+
+* 
+    * Fetch
+    * Sort
+    * Merge
+    * Return Matches
+
+<!SLIDE bullets>
+
+# How Do I JOIN?
+
+* 
+    * Fetch
+    * **Sort** - recall clustered keys
+    * Merge
+    * Return Matches
+
+

@@ -5,3 +5,8 @@ span.location {
 span.tag {
     color: #ff6666;
 }
+
+.references li {
+    font-size: 40%;
+    padding: 5px 0;
+}
