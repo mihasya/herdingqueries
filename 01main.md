@@ -64,29 +64,38 @@ My name is Pancakes.
 
 ### where the money is stashed?"
 
-<small>credit: <a href="http://rt.com/art-and-culture/news/bender-ostap-tears-moscow/">russia today</a>
+<small>image credit: <a href="http://rt.com/art-and-culture/news/bender-ostap-tears-moscow/">russia today</a>
 
 <!SLIDE bullets>
 
 # Yes, and also..
 
-*    
-    * Platform-specific data and operations
-        * badge updates
-        * "quiet time"
-            * can't enforce at device level on all platforms
-        * delivery service device ID resolution
-            * key-value lookup at delivery time
+### Platform-specific data and operations
+
+*            
+    * Push platform identifying tokens
+    * "quiet time"
+        * can't enforce at device level on all platforms
+    * "Badge" updates, etc
+
+### Per-device lookups + updates
+
+.notes this is a big issue - every device being sent to has to be looked up by its ID - key value read
 
 <!SLIDE bullets>
 
-# Tag Data
+# Tag Predicates
 *  
-    * Set via the API through the device SDK or directly by the developer
+    * Tags set via the device SDK or directly by the developer (API)
     * Most likely: identify interest expressed by user
         * `team:blues`
         * `likes:beyonce`
         * `dislikes:thekillers`
+
+<!SLIDE bullets>
+
+# Tag Predicates
+* 
     * Only supported disjunctive (OR) selection
         * Useful, but limiting
         * Workarounds: `likes:beyonce_dislikes:thekillers`
@@ -94,8 +103,14 @@ My name is Pancakes.
     * High cardinality
         * a device can have thousands of tags (**important**)
 
+.notes another example: sports app - likes team, has these specific alerts turned on
+
+<!SLIDE>
+
+IMAGE OF THE SCORE/SPORTS CENTER PUSH PREFS
+
 <!SLIDE bullets>
-# Location Data
+# Location Predicates
 * 
     * Completely new concept, lots of possibilities
         * Within N feet of Lat,Lon
@@ -242,18 +257,21 @@ Customer -> API -> Fetch Data & Munge<sub>1</sub> -> .. -> Fetch Data & Munge<su
 # Vague Data Model
 
 * 
-    * Tables storing device location and history
+    * Tables for <span class="location">device location and history</span>
         * Device ID = Primary Key
         * probably clustered on Device ID
-    * Tables for storing tag data
+    * Tables for <span class="tag">tag data</span>
         * probably just one table and lots of self joins
+        * Device ID = Primary Key
+    * Tables for platform-specific data
+        * has to be joined to everything
         * Device ID = Primary Key
 
 <!SLIDE bullets>
 
 # Aside: Index Clustering
 
-## A Optimization
+## An Optimization
 
 Most RDBMSs offer this in some form.
 
@@ -281,7 +299,7 @@ This is important.
 
 * 
     * Parse - turn query into an logical tree
-    * **Plan** - figure out cheapest logical equivanelt 
+    * **Plan** - figure out cheapest logical equivalent 
     * **Perform** - fetch, sort, merge, etc.
     * Respond - send result back to client
 
@@ -333,5 +351,35 @@ Basic Sort Merge Join Algo from [ 2 ]
     * **Sort** - recall clustered keys
     * Merge
     * Return Matches
+
+<!SLIDE>
+
+# "Query arbitrary combinations of spatial and tag data in real time."
+
+<!SLIDE>
+
+# "Send to devices<br /><br />matching an arbitrarily nested predicate<br /><br /> in any order." 
+
+.notes those are actually quite different
+
+<!SLIDE>
+
+# Order by Application ID and Device ID
+
+.notes force global ordering on disk, in queries. clustering can be taken for granted &amp; we get to skip the "sort" in sort-merge-join
+
+<!SLIDE>
+
+# How Do I JOIN?
+
+<img src="sortmergejoin-reduced.png" height="450" class="shadow" />
+
+Basic Sort Merge Join Algo from [ 2 ]
+
+<!SLIDE>
+
+# What if we pull the storage outside the process that's performing the query?
+
+.notes recall that the logical operators only care about receiving tuples.
 
 
