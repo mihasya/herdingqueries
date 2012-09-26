@@ -259,7 +259,6 @@ Customer -> API -> Fetch Data & Munge<sub>1</sub> -> .. -> Fetch Data & Munge<su
 * 
     * Tables for <span class="location">device location and history</span>
         * Device ID = Primary Key
-        * probably clustered on Device ID
     * Tables for <span class="tag">tag data</span>
         * probably just one table and lots of self joins
         * Device ID = Primary Key
