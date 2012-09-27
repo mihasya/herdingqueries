@@ -404,4 +404,24 @@ Datastores Connected By The Query Execution Service
 
 <small>photo by <a href="http://www.flickr.com/photos/montage_man/4152261542">montage man</a></small>
 
+<!SLIDE bullets>
+
+# The Life of a Query, Revisited
+
+* 
+    * <s>Parse</s> - tree passed directly in
+    * <s>**Plan**</s> - we know optimal plan up-front
+    * **Perform** - fetch, <s>sort</s>, merge, etc.
+    * Respond - send result back to client
+
+.notes the way the UI is constructed makes it easy enough to just build a tree structure up front
+
+<!SLIDE>
+
+<img src="segments-ui.png" height="500" class="shadow" />
+
+.notes turns into JSON which maps to protobufs
+
+<!SLIDE>
+
 
