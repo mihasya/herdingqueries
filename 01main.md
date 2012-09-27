@@ -66,9 +66,9 @@ My name is Pancakes.
 
 <small>image credit: <a href="http://rt.com/art-and-culture/news/bender-ostap-tears-moscow/">russia today</a>
 
-<!SLIDE bullets>
-
 .notes famous quote.. well, famous if you're russian
+
+<!SLIDE bullets>
 
 # Yes, and also..
 
@@ -212,11 +212,6 @@ My name is Pancakes.
 
 # What Would a Database Do?
 
-<img src="blegh.jpg" height="427" class="shadow" />
-
-<small>photo by <a href="http://www.flickr.com/photos/tehf0x/">tehf0x</a></small>
-
-.notes I have to use a photo because I can never recreate that exact expression
 
 <!SLIDE bullets>
 
@@ -424,4 +419,118 @@ Datastores Connected By The Query Execution Service
 
 <!SLIDE>
 
+# And Now, Story Time
 
+<!SLIDE>
+
+# How Fast Is Too Fast?
+
+<img src="firehose.jpg" height="400" class="shadow" />
+
+### Certain Apps With Large Install Bases and High Push Open Rates DoS Themselves If We Deliver Too Quickly
+
+<small>photo by <a href="http://www.flickr.com/photos/usnavy/5764376361">usnavy</a>
+
+.notes this is a general phenomenon not specific to this project that we observe when we make something a lot faster. Talk about an unexpected side effect!
+
+<!SLIDE>
+
+# DeMorgan's Law is Your Friend
+
+### Sometimes you forget that your system is supposed to support NOTs until the day before it's supposed to launch.
+
+<!SLIDE>
+
+# You're gonna have a bad time
+
+<img src="investigate.png" height="150" class="shadow" />
+
+### Generally, It Helps to Understand the Logic
+
+.notes What I'm really saying: it's 9pm and I just realized that the logic for negation is completely incorrect. Also, yes, I know, this isn't specifically DeMorgans
+
+<!SLIDE>
+
+### The opposite of <br /> 
+
+# "Has been to DR in the last month" <br /> 
+
+### is 
+
+# "Has NOT been to DR in the last month"
+
+<!SLIDE>
+
+### Not
+
+# "Has been to any place other than DR any time other than last month"
+
+### "Has Been" Predicates Implemented As Range Constraints.
+
+### Can't just invert the ranges and slap a NOT on there
+
+<!SLIDE>
+
+<img src="blegh.jpg" height="427" class="shadow" />
+
+<small>photo by <a href="http://www.flickr.com/photos/tehf0x/">tehf0x</a></small>
+
+.notes I have to use a photo because I can never recreate that exact expression
+
+<!SLIDE>
+
+# Attention To Detail Is Important
+
+<img src="attention.jpg" height="200" class="shadow" />
+
+.notes this diff is funny to me because it came after like 3 hours of debugging why NOTs weren't working correctly
+
+<!SLIDE>
+
+# skipTo Considered Harmful
+
+
+.notes due to an accident of history (the naive [) range parsing on our spatial index), the whole thing was built around iterators that can skipTo, not skipPast
+
+<!SLIDE>
+
+# What If You skipTo This?
+
+    0    aaaaaaaaaaaaaaaaaaaaaaaa
+    1    aaaaaaaaaaaaaaaaaaaaaaaa
+    2    aaaaaaaaaaaaaaaaaaaaaaaa
+    3    aaaaaaaaaaaaaaaaaaaaaaaa
+    4    aaaaaaaaaaaaaaaaaaaaaaaa
+    5    aaaaaaaaaaaaaaaaaaaaaaaa
+    6    aaaaaaaaaaaaaaaaaaaaaaaa
+    7    aaaaaaaaaaaaaaaaaaaaaaaa
+    ...
+    1001 aaaaaaaaaaaaaaaaaaaaaaaa
+
+.notes your batch size is 1000, so you query 1000+1 and skipTo the 1001st result for the next page
+
+<!SLIDE>
+
+<img src="infinipush2.jpg" height="326" class="shadow" />
+
+<!SLIDE>
+
+<img src="infinipush1.png" height="326" class="shadow" />
+
+.notes this is how you overheat an iPhone
+
+<!SLIDE>
+
+<img src="tpsboss.jpg" height="360" class="shadow" />
+
+### "What's uhhh going on with that JIRA?"
+
+<!SLIDE bullets>
+
+# Solution
+*  
+    * Implement Uniques At The Data Stores
+    * Switch to "skipPast"
+    * Enforce monotonic order (next &gt; last)
+
+## **Don't be an idiot**
