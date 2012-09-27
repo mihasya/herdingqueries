@@ -210,51 +210,13 @@ My name is Pancakes.
 
 <!SLIDE>
 
-# Take 1
-
-Customer -> API -> Fetch Data -> Munge -> Devices
-
-<!SLIDE bullets>
-
-# Scan ALL The Things
-
-* 
-    * Effectively Map-Reduce
-    * An obviously non-optimal solution
-    * Difficult to parallelize
-    * Crippling at low cardinality
-
-<!SLIDE>
-
-# Take 2
-
-Customer -> API -> Fetch Data & Munge<sub>1</sub> -> .. -> Fetch Data & Munge<sub>N</sub> -> Devices
-
-<!SLIDE bullets>
-
-# Send ALL The Things
-
-*   
-    * Each step implements a 2-way "push" protocol
-        * Homogeneous - lists go in, lists come out
-        * Tag, location, platform pieces all act the same
-    * Requires query decomposition and optimization
-    * Textbook "Data to Algorithm" solution
-        * (do not want)
-
-<!SLIDE>
+# What Would a Database Do?
 
 <img src="blegh.jpg" height="427" class="shadow" />
 
 <small>photo by <a href="http://www.flickr.com/photos/tehf0x/">tehf0x</a></small>
 
 .notes I have to use a photo because I can never recreate that exact expression
-
-<!SLIDE>
-
-# What Would a Database Do?
-
-.notes what would it looks like if we COULD fit it into one RDBMS?
 
 <!SLIDE bullets>
 
