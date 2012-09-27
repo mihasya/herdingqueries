@@ -188,7 +188,7 @@ My name is Pancakes.
 
 <!SLIDE>
 
-# Don't forget the Platform-specific data!
+# Don't forget Platform-specific data!
 
 <!SLIDE>
 
@@ -203,7 +203,7 @@ My name is Pancakes.
 
 <small>credit: <a href="http://en.wikipedia.org/wiki/We_Can_Do_It!">wikipedia</a></small>
 
-.notes enjoy this image, because it gets heavy after this
+.notes This appears to be a simple matter of programming
 
 <!SLIDE bullets>
 
@@ -255,6 +255,8 @@ Customer -> API -> Fetch Data & Munge<sub>1</sub> -> .. -> Fetch Data & Munge<su
 <img src="blegh.jpg" height="427" class="shadow" />
 
 <small>photo by <a href="http://www.flickr.com/photos/tehf0x/">tehf0x</a></small>
+
+.notes I have to use a photo because I can never recreate that exact expression
 
 <!SLIDE>
 
@@ -363,7 +365,21 @@ Basic Sort Merge Join Algo from [ 2 ]
 
 <!SLIDE>
 
+# Phrasing is Important
+
+<img src="shoppingcart.jpg" height="400" class="shadow" />
+
+### What Do We REALLY Need?
+
+<small>photo by <a href="http://www.flickr.com/photos/jessalyn/7333566838/">jessalyn</a></small>
+
+.notes I'm never gonna eat all those pineapples
+
+<!SLIDE>
+
 # "Query arbitrary combinations of spatial and tag data in real time."
+
+.notes makes it seem like we'd have to try and implement the entire RDMBs query stack
 
 <!SLIDE>
 
@@ -373,9 +389,36 @@ Basic Sort Merge Join Algo from [ 2 ]
 
 <!SLIDE>
 
+### Ordering Doesn't Matter, So Pick One
+
 # Order by Application ID and Device ID
 
 .notes force global ordering on disk, in queries. clustering can be taken for granted &amp; we get to skip the "sort" in sort-merge-join
+
+<!SLIDE bullets>
+
+# So What Do We End Up With?
+
+* 
+    * <span class="location">Location</span> index returns results in ID order
+    * <span class="tag">Tag</span> index stored in ID order
+    * <span class="platform">Platform</span> data is stored in ID order
+
+### Any Ordered Partitioner For <span class="tag">Tags</span> and <span class="platform">Platform</span> Data
+
+### <span class="location">Location</span> Index Not Clustered, But Could Be
+
+<!SLIDE>
+
+# Sequential Reads<br/>for <span class="tag">Tag</span> and <span class="platform">Platform</span> indexes
+
+### Huge Performance Win,<br />Even With SSDs
+
+<!SLIDE>
+
+# All indexes support efficient cursor pagination &amp; can skip forward
+
+### Optimizes JOINing Sets Of Wildly Disparate Sizes
 
 <!SLIDE>
 
@@ -385,21 +428,6 @@ Basic Sort Merge Join Algo from [ 2 ]
 
 Basic Sort Merge Join Algo from [ 2 ]
 
-<!SLIDE bullets>
-
-# So What Do We End Up With?
-
-* 
-    * <span class="location">Location</span> index returns results in ID order
-    * <span class="tag">Tag</span> index stores and returns devices in ID order
-    * <span class="platform">Platform</span> data is stored in ID order
-        * Effectively JOINed at the very end 
-
-### Any Ordered Partitioner For <span class="tag">Tags</span> and <span class="platform">Platform</span> Data
-
-<!SLIDE>
-
-# All indexes support efficient cursor pagination, can skip forward
 
 <!SLIDE>
 
