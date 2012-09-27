@@ -28,6 +28,8 @@ My name is Pancakes.
 
 ## Urban Airship Messaging Team
 
+.notes acquired for spatial expertese and amazing slide templates
+
 <!SLIDE>
 
 # Goal: Location-based Push
