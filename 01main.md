@@ -30,17 +30,15 @@ My name is Pancakes.
 
 <!SLIDE>
 
-# Goal:
+# Goal: Location-based Push
 
-## Location-based Push
+### Bonus: Complex Predicate-based Push
 
-# Bonus:
-
-## Arbitrarily Complex Push
+.notes querying by location only is not very compelling on its own
 
 <!SLIDE>
 
-# ( things nobody else has )
+# ( very nice, but very difficult things )
 
 <!SLIDE>
 
@@ -50,7 +48,7 @@ My name is Pancakes.
 
 # Requirements
 * 
-    * Instant
+    * Low time to first push
     * Constant, high throughput
     * Millions of devices
     * Horizontal scalability
@@ -67,6 +65,8 @@ My name is Pancakes.
 <small>image credit: <a href="http://rt.com/art-and-culture/news/bender-ostap-tears-moscow/">russia today</a>
 
 <!SLIDE bullets>
+
+.notes famous quote.. well, famous if you're russian
 
 # Yes, and also..
 
@@ -107,18 +107,17 @@ My name is Pancakes.
 
 <!SLIDE>
 
-IMAGE OF THE SCORE/SPORTS CENTER PUSH PREFS
+<img src="score.png" height="500" class="shadow" />
 
 <!SLIDE bullets>
 # Location Predicates
 * 
     * Completely new concept, lots of possibilities
-        * Within N feet of Lat,Lon
-        * Inside a polygon
+        * Last seen inside a polygon
             * City
             * Neighborhood
             * Stadium (seriously)
-        * Has been in Baltimore in the last 2 weeks
+        * Has been in a polygon within an interval (historic)
     * **Recall**: SimpleGeo put a lot of effort into flexible querying of geodata.
 
 <!SLIDE>
@@ -154,7 +153,13 @@ IMAGE OF THE SCORE/SPORTS CENTER PUSH PREFS
 
 <!SLIDE>
 
-## "An RDBMS will do all that!"
+# "An RDBMS will do all that!"
+
+<img src="enthusiasm.png" height="450" class="shadow" />
+
+<small>photo by <a href="http://www.flickr.com/photos/carbonnyc/4318504691">carbonnyc</a></small>
+
+.notes pro-tip: if you blanket set all your photos to Creative Commons license, some asshole will use them for presentations
 
 <!SLIDE>
 
@@ -185,16 +190,18 @@ IMAGE OF THE SCORE/SPORTS CENTER PUSH PREFS
 
 <!SLIDE>
 
-graphic representing the gap?
+# How Do We Put It All Together?
 
-<!SLIDE>
+<img src="puzzle.jpg" height="427" class="shadow" />
 
-# How Do We Bridge The Gap?
+<small>photo by <a href="http://www.flickr.com/photos/theotter/6590636397">theotter</a></small>
 
 <!SLIDE>
 <img src="wecandoit.jpg" height="500" class="shadow" />
 
 <small>credit: <a href="http://en.wikipedia.org/wiki/We_Can_Do_It!">wikipedia</a></small>
+
+.notes enjoy this image, because it gets heavy after this
 
 <!SLIDE bullets>
 
@@ -229,12 +236,6 @@ Customer -> API -> Fetch Data -> Munge -> Devices
 
 Customer -> API -> Fetch Data & Munge<sub>1</sub> -> .. -> Fetch Data & Munge<sub>N</sub> -> Devices
 
-<!SLIDE>
-
-<img src="dog-tail.jpg" height="500" class="shadow" />
-
-<small>photo by <a href="http://www.flickr.com/photos/ick9s/3572358617/in/photostream/">ick9s</a></small>
-
 <!SLIDE bullets>
 
 # Send ALL The Things
@@ -243,8 +244,21 @@ Customer -> API -> Fetch Data & Munge<sub>1</sub> -> .. -> Fetch Data & Munge<su
     * Each step implements a 2-way "push" protocol
         * Homogeneous - lists go in, lists come out
         * Tag, location, platform pieces all act the same
+    * Requires query decomposition and optimization
     * Textbook "Data to Algorithm" solution
         * (do not want)
+
+<!SLIDE>
+
+# Take 2
+
+[ TODO: COPY OF TAKE 2 DIAGRAM HERE ]
+
+<!SLIDE>
+
+<img src="dog-tail.jpg" height="500" class="shadow" />
+
+<small>photo by <a href="http://www.flickr.com/photos/ick9s/3572358617/in/photostream/">ick9s</a></small>
 
 <!SLIDE>
 
@@ -257,18 +271,18 @@ Customer -> API -> Fetch Data & Munge<sub>1</sub> -> .. -> Fetch Data & Munge<su
 # Vague Data Model
 
 * 
-    * Tables for <span class="location">device location and history</span>
-        * Device ID = Primary Key
-    * Tables for <span class="tag">tag data</span>
+    * Table for <span class="location">device location and history</span>
+        * Primary Key: **`appId:deviceId`**
+    * Table for <span class="tag">tag data</span>
         * probably just one table and lots of self joins
-        * Device ID = Primary Key
-    * Tables for platform-specific data
+        * Primary Key: **`appId:deviceId`**
+    * Table for platform-specific data
         * has to be joined to everything
-        * Device ID = Primary Key
+        * Primary Key: **`appId:deviceId`**
 
 <!SLIDE bullets>
 
-# Aside: Index Clustering
+# Aside: Data Clustering
 
 ## An Optimization
 
@@ -375,10 +389,26 @@ Basic Sort Merge Join Algo from [ 2 ]
 
 Basic Sort Merge Join Algo from [ 2 ]
 
+<!SLIDE bullets>
+
+# So What Do We End Up With?
+
+* 
+    * <span class="location">Location</span> index returns results in ID order
+    * <span class="tag">Tag</span> index stores and returns devices in ID order
+    * <span class="platform">Platform</span> data is stored in ID order
+        * Effectively JOINed at the very end 
+
+### Any Ordered Partitioner For <span class="tag">Tags</span> and <span class="platform">Platform</span> Data
+
 <!SLIDE>
 
-# What if we pull the storage outside the process that's performing the query?
+# All indexes support efficient cursor pagination, can skip forward
 
-.notes recall that the logical operators only care about receiving tuples.
+<!SLIDE>
+
+[ rough diagram of gbc talking to databases; query execution engine -> crossed out -> gooeybuttecake ]
+
+.notes putting a service in production called "gooeybuttercake" is my crowning achievement
 
 
