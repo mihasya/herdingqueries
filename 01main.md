@@ -250,15 +250,9 @@ Customer -> API -> Fetch Data & Munge<sub>1</sub> -> .. -> Fetch Data & Munge<su
 
 <!SLIDE>
 
-# Take 2
+<img src="blegh.jpg" height="427" class="shadow" />
 
-[ TODO: COPY OF TAKE 2 DIAGRAM HERE ]
-
-<!SLIDE>
-
-<img src="dog-tail.jpg" height="500" class="shadow" />
-
-<small>photo by <a href="http://www.flickr.com/photos/ick9s/3572358617/in/photostream/">ick9s</a></small>
+<small>photo by <a href="http://www.flickr.com/photos/tehf0x/">tehf0x</a></small>
 
 <!SLIDE>
 
@@ -276,7 +270,7 @@ Customer -> API -> Fetch Data & Munge<sub>1</sub> -> .. -> Fetch Data & Munge<su
     * Table for <span class="tag">tag data</span>
         * probably just one table and lots of self joins
         * Primary Key: **`appId:deviceId`**
-    * Table for platform-specific data
+    * Table for <span class="platform">platform-specific data</span>
         * has to be joined to everything
         * Primary Key: **`appId:deviceId`**
 

@@ -1,9 +1,16 @@
 span.location {
     color: #8888ff;
+    font-weight: bold;
 }
 
 span.tag {
     color: #ff6666;
+    font-weight: bold;
+}
+
+span.platform {
+    color: #ffb626;
+    font-weight: bold;
 }
 
 .references li {
