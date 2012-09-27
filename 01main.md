@@ -169,12 +169,15 @@ My name is Pancakes.
 
 <small>photo by <a href="http://www.flickr.com/photos/belsymington/4102783610/">belsymington</a></small>
 
-<!SLIDE>
 .notes not all RDBMSs will even do that, and the ones that do get really unwieldy at our data size
+
+<!SLIDE>
 
 <img src="overloaded_annotated.jpg" height="500" class="shadow" />
 
 <small>photo by <a href="http://www.flickr.com/photos/belsymington/4102783610/">belsymington</a></small>
+
+.notes 100MM installs, trending towards 1B. Most customers &lt;= 10M, with a few notable, crucial exceptions
 
 <!SLIDE>
 
@@ -204,17 +207,6 @@ My name is Pancakes.
 <small>credit: <a href="http://en.wikipedia.org/wiki/We_Can_Do_It!">wikipedia</a></small>
 
 .notes This appears to be a simple matter of programming
-
-<!SLIDE bullets>
-
-# Let's Take Stock
-
-*    
-    * SOA - small services, good at one or two things
-        * Databases suited for each use case
-    * Shared RPC library
-    * 100MM installs, trending towards 1B
-        * &lt;10MM per customer with a few exceptions
 
 <!SLIDE>
 
@@ -402,7 +394,7 @@ Basic Sort Merge Join Algo from [ 2 ]
 * 
     * <span class="location">Location</span> index returns results in ID order
     * <span class="tag">Tag</span> index stored in ID order
-    * <span class="platform">Platform</span> data is stored in ID order
+    * <span class="platform">Platform</span> data stored in ID order
 
 ### Any Ordered Partitioner For <span class="tag">Tags</span> and <span class="platform">Platform</span> Data
 
@@ -410,7 +402,7 @@ Basic Sort Merge Join Algo from [ 2 ]
 
 <!SLIDE>
 
-# Sequential Reads<br/>for <span class="tag">Tag</span> and <span class="platform">Platform</span> indexes
+# Only Sequential Reads<br/>for <span class="tag">Tag</span> and <span class="platform">Platform</span> indexes
 
 ### Huge Performance Win,<br />Even With SSDs
 
@@ -422,17 +414,32 @@ Basic Sort Merge Join Algo from [ 2 ]
 
 <!SLIDE>
 
+# Only Return The Exact Set Requested
+
+<!SLIDE>
+
 # How Do I JOIN?
 
 <img src="sortmergejoin-reduced.png" height="450" class="shadow" />
 
 Basic Sort Merge Join Algo from [ 2 ]
 
+<!SLIDE>
+
+# One More Time, With Feeling
+
+<img src="mergejoinwithfeeling.png" height="450" class="shadow" />
+
+Datastores Connected By The Query Execution Service
+
+.notes putting a service in production called "gooeybuttercake" is my crowning achievement
 
 <!SLIDE>
 
-[ rough diagram of gbc talking to databases; query execution engine -> crossed out -> gooeybuttecake ]
+# Mmmmmmm Gooey Butter Cake
 
-.notes putting a service in production called "gooeybuttercake" is my crowning achievement
+<img src="gbc.jpg" height="400" class="shadow" />
+
+<small>photo by <a href="http://www.flickr.com/photos/montage_man/4152261542">montage man</a></small>
 
 
