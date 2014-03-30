@@ -489,7 +489,6 @@ Datastores Connected By The Query Execution Service
 
 # skipTo Considered Harmful
 
-
 .notes due to an accident of history (the naive [) range parsing on our spatial index), the whole thing was built around iterators that can skipTo, not skipPast
 
 <!SLIDE>
@@ -534,3 +533,14 @@ Datastores Connected By The Query Execution Service
     * Enforce monotonic order (next &gt; last)
 
 ## **Don't be an idiot**
+
+<!SLIDE>
+
+# Everything Is An Integration Point
+
+### Upside: Easy to track down failures
+
+### Downside: Easy to track down failures
+
+.notes Got to the room and remembered I forgot to talk about monitoring. Any of the services paging = you're paging. You can get some really good data out of a system like this, since all the work units are about the same size - N results from an index
+
